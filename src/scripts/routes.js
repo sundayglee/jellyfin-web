@@ -309,12 +309,6 @@ import { appRouter } from '../components/appRouter';
     });
 
     defineRoute({
-        alias: '/search.html',
-        path: 'search.html',
-        pageComponent: 'SearchPage'
-    });
-
-    defineRoute({
         alias: '/list.html',
         path: 'list.html',
         autoFocus: false,
@@ -558,11 +552,6 @@ import { appRouter } from '../components/appRouter';
         enableContentQueryString: true,
         roles: 'admin',
         serverRequest: true
-    });
-
-    defineRoute({
-        path: '/dialog',
-        dummyRoute: true
     });
 
     defineRoute({

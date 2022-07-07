@@ -39,7 +39,8 @@ function getDeviceProfile(item) {
             profile = profileBuilder(builderOpts);
         }
 
-        const maxTranscodingVideoWidth = appHost.screen()?.maxAllowedWidth;
+        const maxVideoWidth = appSettings.maxVideoWidth();
+        const maxTranscodingVideoWidth = maxVideoWidth < 0 ? appHost.screen()?.maxAllowedWidth : maxVideoWidth;
 
         if (maxTranscodingVideoWidth) {
             profile.TranscodingProfiles.forEach((transcodingProfile) => {
@@ -75,7 +76,9 @@ function replaceAll(originalString, strReplace, strWith) {
 function generateDeviceId() {
     const keys = [];
 
-    if (keys.push(navigator.userAgent), keys.push(new Date().getTime()), window.btoa) {
+    keys.push(navigator.userAgent);
+    keys.push(new Date().getTime());
+    if (window.btoa) {
         const result = replaceAll(btoa(keys.join('|')), '=', '1');
         return result;
     }
